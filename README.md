@@ -12,7 +12,7 @@ smppPassword -> password to get access
 
 ## How to use:
 
-1. Clone project:
+1. Clone project: https://github.com/proselytear/psmpplib
 2. Run command: mvn clean install
 3. Import psmpplib-1.0.0-jar-with-dependencies in your client application
 4. Code example:
