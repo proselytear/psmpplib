@@ -92,8 +92,8 @@ public class PSmppService {
         return pSmppSession.getSessionId();
     }
 
-    public void sendEnquireLink() {
-        this.pSmppSession.sendEnquireLink();
+    public byte[] sendEnquireLink() {
+        return this.pSmppSession.sendSmppEnquireLink();
     }
 
     public void closeSession() {

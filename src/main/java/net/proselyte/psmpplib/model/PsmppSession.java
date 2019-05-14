@@ -20,12 +20,13 @@ public class PsmppSession extends SMPPSession {
     /**
      * Send enquire link request
      */
-    public void sendEnquireLink() {
+    public byte[] sendSmppEnquireLink() {
         try {
             byte[] response = this.pduSender().sendEnquireLink(new ByteArrayOutputStream(atomicInteger.get()), atomicInteger.addAndGet(1));
             System.out.println(Arrays.toString(response));
+            return response;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error occurred during sendEnquireLink");
         }
     }
 }
