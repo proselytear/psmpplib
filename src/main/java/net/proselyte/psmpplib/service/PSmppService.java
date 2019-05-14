@@ -16,7 +16,6 @@ import org.jsmpp.bean.TypeOfNumber;
 import org.jsmpp.extra.NegativeResponseException;
 import org.jsmpp.extra.ResponseTimeoutException;
 import org.jsmpp.session.BindParameter;
-import org.jsmpp.session.SMPPSession;
 import org.jsmpp.util.AbsoluteTimeFormatter;
 import org.jsmpp.util.TimeFormatter;
 
@@ -24,8 +23,7 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * Extension of {@link SMPPSession} class.
- * Provides access to main SMPP functionality.
+ * Main service class of application.
  *
  * @author Eugene Suleimanov
  * @version 1.0
