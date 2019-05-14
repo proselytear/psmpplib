@@ -21,7 +21,7 @@ smppPassword -> password to get access
         import net.proselyte.psmpplib.service.PSmppService;
         import net.proselyte.psmpplib.util.Configuration;
         ...
-          PSmppService service = new Configuration().buildSessionFactory().getService();
+          PSmppService service = new Configuration().buildServiceFactory().getService();
           service.sendMessage("TEST", "TEST", "TEST");
           service.sendEnquireLink();
           service.closeSession();

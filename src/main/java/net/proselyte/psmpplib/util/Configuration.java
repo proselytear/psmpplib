@@ -47,7 +47,7 @@ public class Configuration {
         }
     }
 
-    public PSmppServiceFactory buildSessionFactory() {
+    public PSmppServiceFactory buildServiceFactory() {
         return new PSmppServiceFactory();
     }
 }
