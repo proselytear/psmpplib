@@ -1,5 +1,6 @@
 package net.proselyte.psmpplib.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.proselyte.psmpplib.model.PsmppSession;
 import net.proselyte.psmpplib.model.SessionState;
 import org.jsmpp.InvalidResponseException;
@@ -29,11 +30,16 @@ import java.util.Date;
  * @version 1.0
  */
 
-public class PSmppService {
-    private static TimeFormatter timeFormatter = new AbsoluteTimeFormatter();
+@Slf4j
+public class PSmppServiceImpl implements PsmppService {
+    private TimeFormatter timeFormatter;
     private PsmppSession pSmppSession;
 
-    public PSmppService(String host, Integer port, String systemId, String password) {
+    public PSmppServiceImpl() {
+    }
+
+    public PSmppServiceImpl(String host, Integer port, String systemId, String password) {
+        timeFormatter = new AbsoluteTimeFormatter();
         this.pSmppSession = new PsmppSession();
         try {
             this.pSmppSession.connectAndBind(host, port,
@@ -73,13 +79,17 @@ public class PSmppService {
                     (byte) 0,
                     message.getBytes());
 
+            log.info("IN sendMessage - message with ID: {} successfully sent", message);
         } catch (PDUException | ResponseTimeoutException | InvalidResponseException | NegativeResponseException | IOException e) {
-            e.printStackTrace();
+            log.error("IN sendMessage - error occurred: {}", e.getCause());
         }
 
         return messageId;
     }
 
+    /**
+     * Returns state of current SMPP session
+     */
     public SessionState getSessionState() {
         return SessionState.valueOf(pSmppSession.getSessionState().name());
     }

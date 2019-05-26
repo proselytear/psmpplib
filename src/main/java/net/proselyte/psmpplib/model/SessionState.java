@@ -1,5 +1,12 @@
 package net.proselyte.psmpplib.model;
 
+/**
+ * Domain object that represents state of {@link org.jsmpp.session.SMPPSession}.
+ *
+ * @author Eugene Suleimanov
+ * @version 1.0
+ */
+
 public enum SessionState {
     OPEN,
     BOUND_TX,

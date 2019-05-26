@@ -1,5 +1,7 @@
 package net.proselyte.psmpplib.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +14,7 @@ import java.util.Properties;
  * @version 1.0
  */
 
+@Slf4j
 public class Configuration {
     static Properties configurationProperties = new Properties();
     private static final String[] requiredProperties = new String[]{"smppHost", "smppPort", "smppSystemId", "smppPassword"};
@@ -21,7 +24,7 @@ public class Configuration {
             InputStream input = new FileInputStream("src/main/resources/smpp.properties");
             configurationProperties.load(input);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("IN Configuration - error occurred during SMPP properties initialization:{}", e.getCause());
         }
 
         // Validate properties file
@@ -47,6 +50,9 @@ public class Configuration {
         }
     }
 
+    /**
+     * Builds SMPP session factory using passed configurationProperties.
+     */
     public PSmppServiceFactory buildServiceFactory() {
         return new PSmppServiceFactory();
     }

@@ -1,7 +1,13 @@
 package net.proselyte.psmpplib.util;
 
-import net.proselyte.psmpplib.service.PSmppService;
+import net.proselyte.psmpplib.service.PSmppServiceImpl;
 
+/**
+ * Factory method implementation for {@link PSmppServiceImpl} class.
+ *
+ * @author Eugene Suleimanov
+ * @version 1.0
+ */
 public class PSmppServiceFactory {
     private String smppHost;
     private String smppPort;
@@ -15,7 +21,7 @@ public class PSmppServiceFactory {
         this.smppPassword = Configuration.configurationProperties.getProperty("smppPassword");
     }
 
-    public PSmppService getService() {
-        return new PSmppService(smppHost, Integer.parseInt(smppPort), smppSystemId, smppPassword);
+    public PSmppServiceImpl getService() {
+        return new PSmppServiceImpl(smppHost, Integer.parseInt(smppPort), smppSystemId, smppPassword);
     }
 }
